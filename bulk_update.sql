@@ -1,0 +1,13 @@
+ALTER TABLE binary_market ADD COLUMN minAmount DECIMAL(18,8) DEFAULT 0;
+UPDATE currency SET status = 1;
+UPDATE exchange_currency SET status = 1;
+UPDATE exchange_market SET status = 1;
+UPDATE binary_market SET status = 1;
+UPDATE futures_market SET status = 1;
+UPDATE ecosystem_market SET status = 1;
+UPDATE ecosystem_token SET status = 1;
+UPDATE exchange SET status = 1;
+UPDATE extension SET status = 1;
+UPDATE provider SET status = 1;
+UPDATE deposit_method SET status = 1;
+UPDATE withdraw_method SET status = 1;
