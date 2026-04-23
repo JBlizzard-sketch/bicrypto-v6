@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_22", "pnpm"]
+
+[phases.install]
+cmds = ["npm install -g pm2", "pnpm install"]
+
+[phases.build]
+cmds = ["pnpm build:frontend"]
+
+[start]
+cmd = "pm2-runtime start production.config.js --env production"
