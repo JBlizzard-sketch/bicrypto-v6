@@ -5,7 +5,7 @@
     "buildCommand": "pnpm build:frontend"
   },
   "deploy": {
-    "startCommand": "pm2-runtime start production.config.js --env production",
+    "startCommand": "pnpm exec pm2-runtime start production.config.js --env production",
     "restartPolicyType": "ON_FAILURE"
   }
 }
