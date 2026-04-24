@@ -168,7 +168,6 @@ class supportTicket extends sequelize_1.Model {
                     using: "BTREE",
                     fields: [{ name: "userId" }],
                 },
-                { name: "tags_idx", using: "BTREE", fields: [{ name: "tags", length: 255 }] },
             ],
         });
     }
