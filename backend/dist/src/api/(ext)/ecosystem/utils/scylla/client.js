@@ -70,13 +70,17 @@ function initialize() {
         return initializationPromise;
     }
     initializationPromise = (async () => {
-        const connected = await connectWithRetry(MAX_RETRIES, INITIAL_DELAY);
-        if (!connected) {
-            throw (0, error_1.createError)({ statusCode: 500, message: "Failed to connect to ScyllaDB" });
+        try {
+            const connected = await connectWithRetry(MAX_RETRIES, INITIAL_DELAY);
+            if (connected) {
+                await initializeDatabase(exports.scyllaKeyspace, tradingTableQueries, tradingViewQueries);
+                await initializeDatabase(exports.scyllaFuturesKeyspace, futuresTableQueries, futuresViewQueries);
+                client.keyspace = exports.scyllaKeyspace;
+            }
         }
-        await initializeDatabase(exports.scyllaKeyspace, tradingTableQueries, tradingViewQueries);
-        await initializeDatabase(exports.scyllaFuturesKeyspace, futuresTableQueries, futuresViewQueries);
-        client.keyspace = exports.scyllaKeyspace;
+        catch (err) {
+            console_1.logger.warn("ECOSYSTEM", "ScyllaDB initialization bypassed. Some real-time features may be limited.");
+        }
     })();
     initializationPromise.catch((err) => {
         console_1.logger.error("ECOSYSTEM", "Failed to initialize ScyllaDB", err);
