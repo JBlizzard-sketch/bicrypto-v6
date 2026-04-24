@@ -212,14 +212,6 @@ class binaryOrder extends sequelize_1.Model {
                     using: "BTREE",
                     fields: [{ name: "status" }, { name: "closedAt" }],
                 },
-                {
-                    name: "idx_binary_order_user_idempotency",
-                    using: "BTREE",
-                    fields: [
-                        { name: "userId" },
-                        { name: "metadata", length: 255 },
-                    ],
-                },
             ],
         });
     }
