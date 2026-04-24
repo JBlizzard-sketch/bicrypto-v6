@@ -2,9 +2,9 @@
   "name": "backend",
   "private": true,
   "scripts": {
-    "types:generate": "ts-node scripts/generate-model-types.ts",
-    "types:generate:force": "ts-node scripts/generate-model-types.ts --force",
-    "predev": "npm run types:generate",
+    "types:generate": "echo 'Source not available, skipping type generation'",
+    "types:generate:force": "echo 'Source not available, skipping type generation'",
+    "predev": "echo 'Starting backend from dist...'",
     "dev": "nodemon",
     "clean": "node -e \"const fs=require('fs');const p=require('path');const d=p.join(__dirname,'dist');if(fs.existsSync(d)){fs.rmSync(d,{recursive:true,force:true});console.log('Cleaned dist folder')}\"",
     "prebuild": "echo 'Skipping prebuild'",

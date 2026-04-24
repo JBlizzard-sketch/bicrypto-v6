@@ -1,8 +1,8 @@
 {
-  "watch": ["./*", "../.env"],
-  "ignore": ["node_modules/*", "dist/*"],
-  "ext": "ts,json",
-  "exec": "ts-node --files -r tsconfig-paths/register -r module-alias/register --project tsconfig.json index.ts",
+  "watch": ["dist/**/*", "../.env"],
+  "ignore": ["node_modules/*"],
+  "ext": "js,json",
+  "exec": "node dist/index.js",
   "env": {
     "NODE_ENV": "development"
   },

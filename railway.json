@@ -5,7 +5,7 @@
     "buildCommand": "pnpm build:frontend"
   },
   "deploy": {
-    "startCommand": "npx --yes pm2-runtime start production.config.js --env production",
+    "startCommand": "node_modules/.bin/pm2-runtime start production.config.js --env production",
     "restartPolicyType": "ON_FAILURE"
   }
 }

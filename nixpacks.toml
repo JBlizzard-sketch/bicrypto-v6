@@ -6,6 +6,3 @@ cmds = ["pnpm install --no-frozen-lockfile"]
 
 [phases.build]
 cmds = ["pnpm build:frontend"]
-
-[start]
-cmd = "pnpm exec pm2-runtime start production.config.js --env production"
