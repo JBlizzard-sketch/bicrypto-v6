@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev --webpack -H 0.0.0.0",
     "dev:turbo": "next dev --turbopack -H 0.0.0.0",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next build",
     "build:i18n": "node i18n/scripts/generate-i18n-manifest.js",
