@@ -4,7 +4,7 @@
   "private": true,
   "version": "6.3.0",
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=7780 concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\"",
+    "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=7780 --dns-result-order=ipv4first\" concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\"",
     "dev:backend": "cross-env NODE_OPTIONS=--max-old-space-size=7780 pnpm --filter backend dev",
     "dev:frontend": "cross-env NODE_OPTIONS=--max-old-space-size=7780 pnpm --filter frontend dev",
     "build:backend": "cross-env NODE_OPTIONS=--max-old-space-size=7780 pnpm --filter backend build",
