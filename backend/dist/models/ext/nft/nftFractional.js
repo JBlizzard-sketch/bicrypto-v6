@@ -126,7 +126,7 @@ class nftFractional extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("metadata");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 set(value) {
                     this.setDataValue("metadata", value ? JSON.stringify(value) : null);

@@ -110,7 +110,7 @@ class nftDispute extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("evidence");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 set(value) {
                     this.setDataValue("evidence", value ? JSON.stringify(value) : null);
@@ -162,7 +162,7 @@ class nftDispute extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("metadata");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 set(value) {
                     this.setDataValue("metadata", value ? JSON.stringify(value) : null);

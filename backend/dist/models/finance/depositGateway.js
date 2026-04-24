@@ -60,7 +60,7 @@ class depositGateway extends sequelize_1.Model {
                         return 0;
                     if (typeof rawData === 'string') {
                         try {
-                            return JSON.parse(rawData);
+                            return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                         }
                         catch (_a) {
                             return parseFloat(rawData) || 0;
@@ -94,7 +94,7 @@ class depositGateway extends sequelize_1.Model {
                         return 0;
                     if (typeof rawData === 'string') {
                         try {
-                            return JSON.parse(rawData);
+                            return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                         }
                         catch (_a) {
                             return parseFloat(rawData) || 0;
@@ -128,7 +128,7 @@ class depositGateway extends sequelize_1.Model {
                         return 0;
                     if (typeof rawData === 'string') {
                         try {
-                            return JSON.parse(rawData);
+                            return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                         }
                         catch (_a) {
                             return parseFloat(rawData) || 0;
@@ -161,7 +161,7 @@ class depositGateway extends sequelize_1.Model {
                         return null;
                     if (typeof rawData === 'string') {
                         try {
-                            return JSON.parse(rawData);
+                            return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                         }
                         catch (_a) {
                             const parsed = parseFloat(rawData);

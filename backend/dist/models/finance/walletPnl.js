@@ -24,10 +24,6 @@ class walletPnl extends sequelize_1.Model {
             balances: {
                 type: sequelize_1.DataTypes.JSON,
                 allowNull: true,
-                get() {
-                    const rawData = this.getDataValue("balances");
-                    return rawData ? JSON.parse(rawData) : null;
-                },
                 comment: "Profit and loss balances for different wallet types (FIAT, SPOT, ECO)",
             },
         }, {

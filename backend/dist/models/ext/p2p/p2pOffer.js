@@ -49,7 +49,7 @@ class p2pOffer extends sequelize_1.Model {
                     const value = this.getDataValue('amountConfig');
                     if (typeof value === 'string') {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (e) {
                             return {};
@@ -82,7 +82,7 @@ class p2pOffer extends sequelize_1.Model {
                     const value = this.getDataValue('priceConfig');
                     if (typeof value === 'string') {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (e) {
                             return {};
@@ -115,7 +115,7 @@ class p2pOffer extends sequelize_1.Model {
                     const value = this.getDataValue('tradeSettings');
                     if (typeof value === 'string') {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (e) {
                             return {};
@@ -150,7 +150,7 @@ class p2pOffer extends sequelize_1.Model {
                         return null;
                     if (typeof value === 'string') {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (e) {
                             return null;
@@ -188,7 +188,7 @@ class p2pOffer extends sequelize_1.Model {
                         return null;
                     if (typeof value === 'string') {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (e) {
                             return null;

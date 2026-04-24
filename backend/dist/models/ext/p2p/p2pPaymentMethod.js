@@ -47,7 +47,7 @@ class p2pPaymentMethod extends sequelize_1.Model {
                         return null;
                     if (typeof rawValue === "string") {
                         try {
-                            return JSON.parse(rawValue);
+                            return (typeof rawValue === "string") ? JSON.parse(rawValue) : rawValue;
                         }
                         catch (_a) {
                             return null;

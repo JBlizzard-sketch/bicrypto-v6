@@ -61,7 +61,7 @@ class wallet extends sequelize_1.Model {
                     if (!rawData)
                         return null;
                     if (typeof rawData === "string")
-                        return JSON.parse(rawData);
+                        return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                     return rawData;
                 },
                 set(value) {

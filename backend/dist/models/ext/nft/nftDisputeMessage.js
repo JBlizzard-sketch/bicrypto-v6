@@ -39,7 +39,7 @@ class nftDisputeMessage extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("attachments");
-                    return value ? JSON.parse(value) : [];
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 set(value) {
                     this.setDataValue("attachments", value ? JSON.stringify(value) : null);

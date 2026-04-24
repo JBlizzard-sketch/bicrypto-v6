@@ -127,7 +127,7 @@ class exchangeOrder extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("trades");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 comment: "Array of individual trades that make up this order",
             },

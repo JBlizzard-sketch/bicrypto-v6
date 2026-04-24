@@ -48,7 +48,7 @@ class supportTicket extends sequelize_1.Model {
                         return value;
                     if (typeof value === 'string') {
                         try {
-                            const parsed = JSON.parse(value);
+                            const parsed = (typeof value === "string") ? JSON.parse(value) : value;
                             return Array.isArray(parsed) ? parsed : [];
                         }
                         catch (e) {
@@ -106,7 +106,7 @@ class supportTicket extends sequelize_1.Model {
                         return value;
                     if (typeof value === 'string') {
                         try {
-                            const parsed = JSON.parse(value);
+                            const parsed = (typeof value === "string") ? JSON.parse(value) : value;
                             return Array.isArray(parsed) ? parsed : [];
                         }
                         catch (e) {

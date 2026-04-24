@@ -51,7 +51,7 @@ class nftToken extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("attributes");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 set(value) {
                     this.setDataValue("attributes", JSON.stringify(value));

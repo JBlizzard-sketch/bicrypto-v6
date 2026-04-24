@@ -88,7 +88,7 @@ class ecosystemToken extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("limits");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
             },
             fee: {
@@ -96,7 +96,7 @@ class ecosystemToken extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const value = this.getDataValue("fee");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
             },
             icon: {

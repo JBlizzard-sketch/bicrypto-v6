@@ -44,7 +44,7 @@ class exchangeMarket extends sequelize_1.Model {
                 validate: {
                     isJSON(value) {
                         try {
-                            const json = JSON.parse(value);
+                            const json = (typeof value === "string") ? JSON.parse(value) : value;
                             if (typeof json !== "object" || json === null) {
                                 throw new Error("Metadata must be a valid JSON object.");
                             }
@@ -61,7 +61,7 @@ class exchangeMarket extends sequelize_1.Model {
                 },
                 get() {
                     const value = this.getDataValue("metadata");
-                    return value ? JSON.parse(value) : null;
+                    return (typeof value === "string") ? JSON.parse(value) : value;
                 },
                 comment: "Additional market configuration and precision settings",
             },

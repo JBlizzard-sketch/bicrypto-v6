@@ -55,7 +55,7 @@ class aiMarketMakerHistory extends sequelize_1.Model {
                         return null;
                     if (typeof value === "string") {
                         try {
-                            return JSON.parse(value);
+                            return (typeof value === "string") ? JSON.parse(value) : value;
                         }
                         catch (_a) {
                             return null;

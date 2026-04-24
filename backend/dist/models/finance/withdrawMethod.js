@@ -83,7 +83,7 @@ class withdrawMethod extends sequelize_1.Model {
                 allowNull: true,
                 get() {
                     const rawData = this.getDataValue("customFields");
-                    return rawData ? JSON.parse(rawData) : null;
+                    return (typeof rawData === "string") ? JSON.parse(rawData) : rawData;
                 },
                 set(fields) {
                     this.setDataValue("customFields", JSON.stringify(fields
