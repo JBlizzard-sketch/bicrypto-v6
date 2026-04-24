@@ -12,12 +12,13 @@ class NotificationQueue {
     constructor() {
         this.sendGridProvider = null;
         this.nodemailerProvider = null;
+        const redisConfig = process.env.REDIS_URL || {
+            host: process.env.REDIS_HOST || "127.0.0.1",
+            port: parseInt(process.env.REDIS_PORT || "6379"),
+            password: process.env.REDIS_PASSWORD || undefined,
+        };
         this.queue = new bull_1.default("notification-emails", {
-            redis: {
-                host: process.env.REDIS_HOST || "127.0.0.1",
-                port: parseInt(process.env.REDIS_PORT || "6379"),
-                password: process.env.REDIS_PASSWORD || undefined,
-            },
+            redis: redisConfig,
             defaultJobOptions: {
                 attempts: 3,
                 backoff: {

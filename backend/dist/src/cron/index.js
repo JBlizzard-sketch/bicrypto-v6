@@ -783,14 +783,15 @@ class CronJobManager {
 }
 const createWorker = async (name, handler, period, concurrency = 1) => {
     const cronJobManager = await CronJobManager.getInstance();
+    const redisConfig = process.env.REDIS_URL || {
+        host: process.env.REDIS_HOST || "127.0.0.1",
+        port: parseInt(process.env.REDIS_PORT || "6379"),
+        password: process.env.REDIS_PASSWORD || undefined,
+        db: parseInt(process.env.REDIS_DB || "0"),
+    };
     try {
         const queue = new bullmq_1.Queue(name, {
-            connection: {
-                host: process.env.REDIS_HOST || "127.0.0.1",
-                port: parseInt(process.env.REDIS_PORT || "6379"),
-                password: process.env.REDIS_PASSWORD || undefined,
-                db: parseInt(process.env.REDIS_DB || "0"),
-            },
+            connection: redisConfig,
         });
         await queue.waitUntilReady();
         const worker = new bullmq_1.Worker(name, async (_job) => {
@@ -813,12 +814,7 @@ const createWorker = async (name, handler, period, concurrency = 1) => {
                 throw error;
             }
         }, {
-            connection: {
-                host: process.env.REDIS_HOST || "127.0.0.1",
-                port: parseInt(process.env.REDIS_PORT || "6379"),
-                password: process.env.REDIS_PASSWORD || undefined,
-                db: parseInt(process.env.REDIS_DB || "0"),
-            },
+            connection: redisConfig,
             concurrency,
         });
         worker.on('error', (error) => {

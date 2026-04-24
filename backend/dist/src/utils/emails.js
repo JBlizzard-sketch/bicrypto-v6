@@ -47,12 +47,13 @@ const db_1 = require("@b/db");
 const console_1 = require("@b/utils/console");
 const token_1 = require("@b/utils/token");
 const APP_EMAILER = process.env.APP_EMAILER || "nodemailer-service";
+const redisConfig = process.env.REDIS_URL || {
+    host: process.env.REDIS_HOST || "127.0.0.1",
+    port: parseInt(process.env.REDIS_PORT || "6379"),
+    password: process.env.REDIS_PASSWORD || undefined,
+};
 exports.emailQueue = new bull_1.default("emailQueue", {
-    redis: {
-        host: process.env.REDIS_HOST || "127.0.0.1",
-        port: parseInt(process.env.REDIS_PORT || "6379"),
-        password: process.env.REDIS_PASSWORD || undefined,
-    },
+    redis: redisConfig,
     defaultJobOptions: {
         attempts: 3,
         backoff: {

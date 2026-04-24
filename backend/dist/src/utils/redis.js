@@ -27,7 +27,7 @@ class RedisSingleton {
             }
             RedisSingleton.isConnecting = true;
             try {
-                RedisSingleton.instance = new ioredis_1.Redis({
+                const redisConfig = process.env.REDIS_URL || {
                     host: process.env.REDIS_HOST || "127.0.0.1",
                     port: parseInt(process.env.REDIS_PORT || "6379"),
                     password: process.env.REDIS_PASSWORD,
@@ -39,7 +39,8 @@ class RedisSingleton {
                     lazyConnect: true,
                     family: 4,
                     keepAlive: 30000,
-                });
+                };
+                RedisSingleton.instance = new ioredis_1.Redis(redisConfig);
                 RedisSingleton.instance.on("error", (error) => {
                     console_1.logger.error("REDIS", `✗ Error: ${error.message}`);
                 });

@@ -88,7 +88,6 @@ export default class page
         content: {
           type: DataTypes.TEXT("long"),
           allowNull: false,
-          defaultValue: "", // Allow empty content for new pages
           validate: {
             isValidContent: function (value: string) {
               // For builder pages, content can be empty initially

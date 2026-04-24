@@ -64,7 +64,6 @@ export default class nftMetadataBackup
         locations: {
           type: DataTypes.JSON,
           allowNull: false,
-          defaultValue: {},
         },
         encrypted: {
           type: DataTypes.BOOLEAN,

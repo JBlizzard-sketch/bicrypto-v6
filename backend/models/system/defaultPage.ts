@@ -49,19 +49,16 @@ export default class defaultPage
         variables: {
           type: DataTypes.JSON,
           allowNull: true,
-          defaultValue: {},
           comment: 'Structured data for home page editing (texts, images, etc.)',
         },
         content: {
           type: DataTypes.TEXT,
           allowNull: true,
-          defaultValue: "",
           comment: 'HTML/markdown content for legal pages',
         },
         meta: {
           type: DataTypes.JSON,
           allowNull: true,
-          defaultValue: {},
           comment: 'SEO metadata and other page settings',
         },
         status: {

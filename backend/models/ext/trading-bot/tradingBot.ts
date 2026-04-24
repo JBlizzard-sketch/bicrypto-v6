@@ -241,7 +241,6 @@ export default class tradingBot
         strategyConfig: {
           type: DataTypes.JSON,
           allowNull: false,
-          defaultValue: {},
         },
         maxPositionSize: {
           type: DataTypes.DECIMAL(18, 8),
