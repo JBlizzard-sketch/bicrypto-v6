@@ -136,10 +136,22 @@ class ExchangeManager {
         const apiSecret = process.env[`APP_${provider.toUpperCase()}_API_SECRET`];
         const apiPassphrase = process.env[`APP_${provider.toUpperCase()}_API_PASSPHRASE`];
         if (!apiKey || !apiSecret || apiKey === "" || apiSecret === "") {
-            console_1.logger.error("EXCHANGE", `API credentials for ${provider} are missing.`, new Error(`API credentials for ${provider} are missing.`));
-            this.attemptCount += 1;
-            this.lastAttemptTime = now;
-            return null;
+            console_1.logger.info("EXCHANGE", `API credentials for ${provider} are missing. Falling back to public mode for charts and prices.`);
+            const publicExchange = new ccxt.pro[provider]({
+                agent,
+                timeout: 30000,
+                enableRateLimit: true,
+            });
+            await this.syncExchangeTime(publicExchange, ctx);
+            try {
+                await publicExchange.loadMarkets();
+                this.exchangeCache.set(provider, publicExchange);
+                return publicExchange;
+            } catch (error) {
+                console_1.logger.error("EXCHANGE", `Failed to load public markets for ${provider}: ${error.message}`);
+                await publicExchange.close();
+                return null;
+            }
         }
         const proxyUrl = await this.fetchProviderProxyUrl(provider);
         const agent = proxyUrl ? createProxyAgent(proxyUrl) : httpsAgentIPv4;
