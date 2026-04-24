@@ -4,7 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logQueue = void 0;
-const log_update_1 = __importDefault(require("log-update"));
+let log_update_module = { default: Object.assign((content) => {}, { clear: () => {}, done: () => {} }) };
+(async () => {
+    try {
+        const mod = await eval('import("log-update")');
+        log_update_module.default = mod.default;
+    } catch (e) {
+        console.error("Failed to load log-update via dynamic import:", e);
+    }
+})();
+const log_update_1 = { get default() { return log_update_module.default; } };
 class LogQueueManager {
     constructor() {
         this.queue = [];
