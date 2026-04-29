@@ -44,7 +44,7 @@ function initModels(sequelize) {
                     console.error(`Model from file ${filePath} has no modelName set.`);
                     continue;
                 }
-                models[modelName] = initializedModel;
+                const key = modelName.charAt(0).toLowerCase() + modelName.slice(1); models[key] = initializedModel;
             }
             else {
                 console.error(`Model from file ${filePath} does not have an initModel method or a valid export structure.`);
