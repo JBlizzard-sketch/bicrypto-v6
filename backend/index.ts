@@ -21,9 +21,9 @@ for (const envPath of envPaths) {
   }
 }
 
-if (!envLoaded) {
-  require("dotenv").config();
-}
+// If no .env file is found, environment variables are expected to be
+// injected by the runtime (e.g. Railway). No action needed — this is
+// the normal production path for 12-factor apps.
 
 import "./module-alias-setup";
 import { MashServer } from "./src";

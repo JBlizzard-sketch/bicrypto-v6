@@ -139,10 +139,9 @@ for (const envPath of envPaths) {
   }
 }
 
-if (!envLoaded) {
-  console.warn("Frontend: No .env file found in any of the expected locations");
-  console.warn("Frontend: Checked paths:", envPaths);
-}
+// If no .env file is found, environment variables are expected to be
+// injected by the runtime (e.g. Railway). No warning needed — this is
+// the normal production path for 12-factor apps.
 
 const backendPort = process.env.NEXT_PUBLIC_BACKEND_PORT || 4000;
 

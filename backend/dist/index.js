@@ -20,16 +20,20 @@ for (const envPath of envPaths) {
         break;
     }
 }
-if (!envLoaded) {
-    require("dotenv").config();
-}
+// If no .env file is found, environment variables are expected to be
+// injected by the runtime (e.g. Railway). No action needed — this is
+// the normal production path for 12-factor apps.
 require("./module-alias-setup");
 const src_1 = require("./src");
 const console_1 = require("./src/utils/console");
+const fix_mysql57_defaults_1 = require("./src/utils/fix-mysql57-defaults");
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT || 4000;
 const startApp = async () => {
     try {
         const app = new src_1.MashServer();
+        // Fix MySQL 5.7+ schema defaults BEFORE initialization
+        await fix_mysql57_defaults_1.fixMySQL57SchemaDefaults(app.sequelize);
+        // Start server - this waits for init then listens, showing "ready" only when all is done
         await app.startServer(Number(port));
     }
     catch (error) {
