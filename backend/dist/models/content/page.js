@@ -62,7 +62,6 @@ class page extends sequelize_1.Model {
             path: {
                 type: sequelize_1.DataTypes.STRING(255),
                 allowNull: false,
-                defaultValue: "",
                 comment: "Full path/route for the page in the website structure",
             },
             title: {
@@ -80,7 +79,6 @@ class page extends sequelize_1.Model {
             content: {
                 type: sequelize_1.DataTypes.TEXT("long"),
                 allowNull: false,
-                defaultValue: "",
                 validate: {
                     isValidContent: function (value) {
                         if (this.isBuilderPage && !value) {

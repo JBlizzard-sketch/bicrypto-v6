@@ -70,7 +70,6 @@ class ecommerceShippingAddress extends sequelize_1.Model {
             email: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
-                defaultValue: "",
                 validate: {
                     notEmpty: { msg: "email: Email must not be empty" },
                     isEmail: { msg: "email: Must be a valid email address" },
