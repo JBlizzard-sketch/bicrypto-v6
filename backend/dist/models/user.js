@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const init_1 = require("./init");
-class user extends sequelize_1.Model {
+class User extends sequelize_1.Model {
     static initModel(sequelize) {
-        return user.init({
+        return User.init({
             id: {
                 type: sequelize_1.DataTypes.UUID,
                 defaultValue: sequelize_1.DataTypes.UUIDV4,
@@ -185,212 +185,212 @@ class user extends sequelize_1.Model {
         });
     }
     static associate(models) {
-        user.hasMany(models.aiInvestment, {
+        User.hasMany(models.aiInvestment, {
             as: "aiInvestments",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasOne(models.author, {
+        User.hasOne(models.author, {
             as: "author",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.binaryOrder, {
+        User.hasMany(models.binaryOrder, {
             as: "binaryOrder",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.comment, {
+        User.hasMany(models.comment, {
             as: "comments",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.ecommerceOrder, {
+        User.hasMany(models.ecommerceOrder, {
             as: "ecommerceOrders",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.ecommerceReview, {
+        User.hasMany(models.ecommerceReview, {
             as: "ecommerceReviews",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasOne(models.ecommerceShippingAddress, {
+        User.hasOne(models.ecommerceShippingAddress, {
             as: "ecommerceShippingAddress",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.ecommerceUserDiscount, {
+        User.hasMany(models.ecommerceUserDiscount, {
             as: "ecommerceUserDiscounts",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.ecommerceWishlist, {
+        User.hasMany(models.ecommerceWishlist, {
             as: "ecommerceWishlists",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.exchangeOrder, {
+        User.hasMany(models.exchangeOrder, {
             as: "exchangeOrder",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.exchangeWatchlist, {
+        User.hasMany(models.exchangeWatchlist, {
             as: "exchangeWatchlists",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.forexAccount, {
+        User.hasMany(models.forexAccount, {
             as: "forexAccounts",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.forexInvestment, {
+        User.hasMany(models.forexInvestment, {
             as: "forexInvestments",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.investment, {
+        User.hasMany(models.investment, {
             as: "investments",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.kycApplication, {
+        User.hasMany(models.kycApplication, {
             as: "kycApplications",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.mlmReferral, {
+        User.hasMany(models.mlmReferral, {
             as: "referredReferrals",
             foreignKey: "referredId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.mlmReferral, {
+        User.hasMany(models.mlmReferral, {
             as: "referrerReferrals",
             foreignKey: "referrerId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.mlmReferralReward, {
+        User.hasMany(models.mlmReferralReward, {
             as: "referralRewards",
             foreignKey: "referrerId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.notification, {
+        User.hasMany(models.notification, {
             as: "notifications",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.providerUser, {
+        User.hasMany(models.providerUser, {
             as: "providers",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.belongsTo(models.role, {
+        User.belongsTo(models.role, {
             as: "role",
             foreignKey: "roleId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.supportTicket, {
+        User.hasMany(models.supportTicket, {
             as: "supportTickets",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.supportTicket, {
+        User.hasMany(models.supportTicket, {
             as: "agentSupportTickets",
             foreignKey: "agentId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.transaction, {
+        User.hasMany(models.transaction, {
             as: "transactions",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasOne(models.twoFactor, {
+        User.hasOne(models.twoFactor, {
             as: "twoFactor",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.wallet, {
+        User.hasMany(models.wallet, {
             as: "wallets",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.walletPnl, {
+        User.hasMany(models.walletPnl, {
             as: "walletPnls",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.icoTransaction, {
+        User.hasMany(models.icoTransaction, {
             as: "icoTransactions",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.icoAdminActivity, {
+        User.hasMany(models.icoAdminActivity, {
             as: "icoAdminActivities",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.p2pTrade, {
+        User.hasMany(models.p2pTrade, {
             as: "p2pTrades",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.p2pOffer, {
+        User.hasMany(models.p2pOffer, {
             as: "p2pOffers",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.p2pReview, {
+        User.hasMany(models.p2pReview, {
             as: "p2pReviews",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasOne(models.nftCreator, {
+        User.hasOne(models.nftCreator, {
             as: "nftCreator",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        user.hasMany(models.userBlock, {
+        User.hasMany(models.userBlock, {
             as: "blocks",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
             constraints: false,
         });
-        user.hasMany(models.userBlock, {
+        User.hasMany(models.userBlock, {
             as: "adminBlocks",
             foreignKey: "adminId",
             onDelete: "CASCADE",
@@ -399,4 +399,4 @@ class user extends sequelize_1.Model {
         });
     }
 }
-exports.default = user;
+exports.default = User;

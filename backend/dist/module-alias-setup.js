@@ -17,4 +17,23 @@ const aliases = isProduction
     };
 for (const alias in aliases) {
     require("module-alias").addAlias(alias, aliases[alias]);
+
+// Force load models on startup
+setImmediate(() => {
+  try {
+    require("./models-loader");
+  } catch (e) {
+    console.error("[STARTUP] Failed to load models:", e.message);
+  }
+});
 }
+
+// Load models after a brief delay to ensure module aliases are available
+setTimeout(() => {
+    try {
+        require("./models-loader");
+        console.log("[STARTUP] Models loaded successfully");
+    } catch (e) {
+        console.error("[STARTUP] Models load failed:", e.message);
+    }
+}, 100);

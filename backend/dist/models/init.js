@@ -16,7 +16,7 @@ function initModels(sequelize) {
     }
     const models = {};
     const currentFileName = path_1.default.basename(__filename);
-    const fileExtension = isProduction ? ".js" : ".ts";
+    const fileExtension = ".js"; // Always .js in compiled dist
     const modelFiles = [];
     function walkDir(dir) {
         fs_1.default.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {

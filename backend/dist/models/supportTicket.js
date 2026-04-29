@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const console_1 = require("@b/utils/console");
-class supportTicket extends sequelize_1.Model {
+class SupportTicket extends sequelize_1.Model {
     static initModel(sequelize) {
-        return supportTicket.init({
+        return SupportTicket.init({
             id: {
                 type: sequelize_1.DataTypes.UUID,
                 defaultValue: sequelize_1.DataTypes.UUIDV4,
@@ -172,13 +172,13 @@ class supportTicket extends sequelize_1.Model {
         });
     }
     static associate(models) {
-        supportTicket.belongsTo(models.user, {
+        SupportTicket.belongsTo(models.user, {
             as: "user",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         });
-        supportTicket.belongsTo(models.user, {
+        SupportTicket.belongsTo(models.user, {
             as: "agent",
             foreignKey: "agentId",
             onDelete: "SET NULL",
@@ -186,4 +186,4 @@ class supportTicket extends sequelize_1.Model {
         });
     }
 }
-exports.default = supportTicket;
+exports.default = SupportTicket;

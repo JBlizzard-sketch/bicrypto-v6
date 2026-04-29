@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-class userBlock extends sequelize_1.Model {
+class UserBlock extends sequelize_1.Model {
     static initModel(sequelize) {
-        return userBlock.init({
+        return UserBlock.init({
             id: {
                 type: sequelize_1.DataTypes.UUID,
                 defaultValue: sequelize_1.DataTypes.UUIDV4,
@@ -94,14 +94,14 @@ class userBlock extends sequelize_1.Model {
         });
     }
     static associate(models) {
-        userBlock.belongsTo(models.user, {
+        UserBlock.belongsTo(models.user, {
             as: "user",
             foreignKey: "userId",
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
             constraints: false,
         });
-        userBlock.belongsTo(models.user, {
+        UserBlock.belongsTo(models.user, {
             as: "admin",
             foreignKey: "adminId",
             onDelete: "CASCADE",
@@ -110,4 +110,4 @@ class userBlock extends sequelize_1.Model {
         });
     }
 }
-exports.default = userBlock;
+exports.default = UserBlock;
