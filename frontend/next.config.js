@@ -140,8 +140,12 @@ for (const envPath of envPaths) {
 }
 
 if (!envLoaded) {
-  console.warn("Frontend: No .env file found in any of the expected locations");
-  console.warn("Frontend: Checked paths:", envPaths);
+  // No .env file found — this is expected in production environments like Railway
+  // where environment variables are injected directly into the process.
+  // Silently continue; process.env will already contain all required variables.
+  if (process.env.NODE_ENV !== "production") {
+    console.info("Frontend: No .env file found — using environment variables from the host.");
+  }
 }
 
 const backendPort = process.env.NEXT_PUBLIC_BACKEND_PORT || 4000;
