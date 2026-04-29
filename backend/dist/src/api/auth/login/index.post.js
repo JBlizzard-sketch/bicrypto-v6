@@ -40,6 +40,25 @@ const passwords_1 = require("@b/utils/passwords");
 const db_1 = require("@b/db");
 const date_fns_1 = require("date-fns");
 const otplib_1 = require("otplib");
+
+// Initialize models from db singleton
+let models = null;
+function getModels() {
+  if (!models) {
+    try {
+      models = db_1.models;
+      if (!models || Object.keys(models).length === 0) {
+        const initModels = require("../../../../models/init").initModels;
+        const db_inst = require("@b/db");
+        models = initModels(db_inst.sequelize);
+      }
+    } catch (e) {
+      console.error("[LOGIN] Models init failed:", e.message);
+      throw e;
+    }
+  }
+  return models;
+}
 const utils_1 = require("../utils");
 const emails_1 = require("@b/utils/emails");
 const cache_1 = require("@b/utils/cache");
@@ -178,10 +197,10 @@ exports.default = async (data) => {
     }
 };
 async function findUserWith2FA(email) {
-    const user = await db_1.models.user.findOne({
+    const user = await getModels().user.findOne({
         where: { email },
         include: {
-            model: db_1.models.twoFactor,
+            model: getModels().twoFactor,
             as: "twoFactor",
         },
     });
@@ -228,7 +247,7 @@ async function verifyPasswordOrThrow(user, password) {
     var _a;
     const isPasswordValid = await (0, passwords_1.verifyPassword)(user.password, password);
     if (!isPasswordValid) {
-        await db_1.models.user.update({
+        await getModels().user.update({
             failedLoginAttempts: ((_a = user.failedLoginAttempts) !== null && _a !== void 0 ? _a : 0) + 1,
             lastFailedLogin: new Date(),
         }, { where: { email: user.email } });
@@ -247,7 +266,7 @@ async function handleLoginAttempts(user) {
             message: "Too many failed login attempts, account is temporarily blocked",
         });
     }
-    await db_1.models.user.update({
+    await getModels().user.update({
         failedLoginAttempts: 0,
         lastFailedLogin: null,
         lastLogin: new Date(),
