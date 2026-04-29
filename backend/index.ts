@@ -28,12 +28,15 @@ if (!envLoaded) {
 import "./module-alias-setup";
 import { MashServer } from "./src";
 import { console$, logger } from "./src/utils/console";
+import { fixMySQL57SchemaDefaults } from "./src/utils/fix-mysql57-defaults";
 
 const port = process.env.NEXT_PUBLIC_BACKEND_PORT || 4000;
 
 const startApp = async () => {
   try {
     const app = new MashServer();
+    // Fix MySQL 5.7+ schema defaults BEFORE initialization
+    await fixMySQL57SchemaDefaults(app.sequelize);
     // Start server - this waits for init then listens, showing "ready" only when all is done
     await app.startServer(Number(port));
   } catch (error) {
